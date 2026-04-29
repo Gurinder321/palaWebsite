@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apex Construction — Custom Home Architecture</title>
+  <title>Empire Design — Custom Home Design in Vancouver</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -174,7 +174,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: calc(var(--nav-h) + 60px) clamp(24px, 6vw, 120px) 60px;
+      padding: var(--nav-h) clamp(24px, 6vw, 120px) 60px;
       max-width: 900px;
       /* subtle radial dark backdrop centred on the text */
       background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(10,9,8,0.45) 0%, transparent 100%);
@@ -289,8 +289,8 @@
       font-family: var(--font-display);
       font-size: 32px;
       font-weight: 500;
-      color: var(--white);
-      text-shadow: 0 2px 16px rgba(28,27,24,0.3);
+      color: var(--gold);
+      text-shadow: 0 2px 16px rgba(28,27,24,0.5);
       line-height: 1;
     }
     .hero-stat-label {
@@ -298,7 +298,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.8);
       margin-top: 4px;
     }
     .scroll-hint {
@@ -593,6 +593,89 @@
       transition: opacity 0.3s, transform 0.4s var(--ease-spring);
     }
     .work-card:hover .work-arrow { opacity: 1; transform: scale(1) rotate(0deg); }
+
+    /* ─── BOOKING ────────────────────────────────────────── */
+    #booking {
+      background: var(--bg-warm);
+    }
+    .booking-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(60px, 8vw, 120px);
+      align-items: start;
+    }
+    .booking-header { padding-top: 8px; }
+    .booking-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 68px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 32px;
+    }
+    .booking-h2 em { font-style: italic; color: var(--gold); }
+    .booking-desc {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      max-width: 45ch;
+    }
+    .booking-cta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 32px 0 24px 0;
+    }
+    .cta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .cta-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gold-pale);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+    .cta-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+    .cta-value {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cta-value:hover { color: var(--gold); }
+    .cta-divider {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+    .booking-calendar {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      min-height: 650px;
+    }
 
     /* ─── PROCESS ────────────────────────────────────────── */
     #process {
@@ -909,6 +992,34 @@
       font-weight: 400;
       color: rgba(255,255,255,0.7);
     }
+    .contact-phone-link {
+      text-decoration: none;
+      color: var(--gold);
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .contact-phone-link:hover {
+      color: var(--gold-pale);
+      text-decoration: underline;
+    }
+    .btn-call-large {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 24px;
+      padding: 16px 32px;
+      background: var(--gold);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 2px;
+      transition: background 0.3s, transform 0.2s var(--ease-spring);
+      border: 2px solid var(--gold);
+    }
+    .btn-call-large:hover {
+      background: var(--gold-pale);
+      border-color: var(--gold-pale);
+      transform: translateY(-2px);
+    }
 
     .contact-form {
       display: flex;
@@ -1067,167 +1178,6 @@
       50%       { opacity: 1; }
     }
 
-    /* ─── SCROLL STORY ──────────────────────────────────── */
-    #scrollstory {
-      padding: 0;
-      position: relative;
-    }
-    .story-scroll-container {
-      /* 400vh gives plenty of scroll distance to step through panels */
-      height: 400vh;
-      position: relative;
-    }
-    .story-sticky {
-      position: sticky;
-      top: 0;
-      height: 100dvh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--ink);
-      transform: translateZ(0); /* promote to its own GPU layer */
-    }
-
-    /* Full-cover explode video */
-    .story-video {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: contain;
-      z-index: 0;
-      background: var(--ink);
-      will-change: contents;
-    }
-
-    /* Same inward vignette as hero — fades to --ink (dark bg) */
-    .story-vignette {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background:
-        linear-gradient(to bottom, var(--ink) 0%, transparent 18%) top    / 100% 50% no-repeat,
-        linear-gradient(to top,    var(--ink) 0%, transparent 18%) bottom / 100% 50% no-repeat,
-        linear-gradient(to right,  var(--ink) 0%, transparent 16%) left   / 50%  100% no-repeat,
-        linear-gradient(to left,   var(--ink) 0%, transparent 16%) right  / 50%  100% no-repeat;
-    }
-
-    /* Text panels — all stacked centre, shown one at a time */
-    .story-panels {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0 clamp(32px, 8vw, 140px);
-      pointer-events: none;
-    }
-    .story-panel {
-      position: absolute;
-      left: clamp(32px, 8vw, 140px);
-      max-width: 48ch;
-      opacity: 0;
-      transform: translateY(18px);
-      /* longer, spring-like transition so text glides in/out */
-      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
-      pointer-events: none;
-      will-change: opacity, transform;
-      /* dark gradient backdrop — left edge to transparent, ensures readability */
-      padding: 36px 40px 36px 36px;
-      background: linear-gradient(to right, rgba(10,9,8,0.72) 0%, rgba(10,9,8,0.55) 60%, transparent 100%);
-      border-left: 2px solid rgba(181,145,90,0.35);
-    }
-    .story-panel.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .story-panel-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
-    }
-    .story-panel-label::before {
-      content: '';
-      display: block;
-      width: 28px; height: 1px;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-    .story-panel-heading {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4.5vw, 68px);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 24px;
-      /* layered shadow: soft spread + tight crisp shadow for max legibility */
-      text-shadow:
-        0 2px 32px rgba(0,0,0,0.9),
-        0 1px 4px  rgba(0,0,0,0.8);
-    }
-    .story-panel-heading em {
-      font-style: italic;
-      color: var(--gold);
-      text-shadow:
-        0 2px 24px rgba(0,0,0,0.7),
-        0 1px 3px  rgba(0,0,0,0.6);
-    }
-    .story-panel-body {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.82);
-      max-width: 42ch;
-      text-shadow: 0 1px 12px rgba(0,0,0,0.75);
-    }
-
-    /* Scroll progress bar along the bottom */
-    .story-progress-track {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: rgba(255,255,255,0.08);
-      z-index: 3;
-    }
-    .story-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--gold);
-      will-change: width;
-    }
-
-    /* Step dots — right edge */
-    .story-dots {
-      position: absolute;
-      right: clamp(24px, 4vw, 64px);
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .story-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      transition: background 0.3s, transform 0.3s var(--ease-spring);
-    }
-    .story-dot.active {
-      background: var(--gold);
-      transform: scale(1.5);
-    }
-
     /* ─── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 1024px) {
       .works-grid { grid-template-columns: 1fr 1fr; }
@@ -1239,6 +1189,12 @@
       .process-step:nth-child(2) { border-right: none; }
       .manifesto-pillars { grid-template-columns: 1fr 1fr; }
       .pillar:last-child { grid-column: 1 / 3; }
+    }
+
+    /* Responsive Booking */
+    @media (max-width: 1024px) {
+      .booking-inner { grid-template-columns: 1fr; gap: 40px; }
+      .booking-cta { flex-direction: column; align-items: flex-start; }
     }
 
     /* ── TABLET / LARGE MOBILE ─────────────────────────── */
@@ -1299,32 +1255,8 @@
 
       .scroll-hint { display: none; }
 
-      /* ── STORY SECTION ── */
-      /* Shorter scroll distance on mobile — less thumb fatigue */
-      .story-scroll-container { height: 280vh; }
-
-      /* Video fills the screen fully on mobile */
-      .story-video { object-fit: cover; }
-
-      /* Panel sits at the bottom of the screen, full width, solid dark bg */
-      .story-panel {
-        left: 0; right: 0;
-        bottom: 0; top: auto;
-        max-width: 100%;
-        width: 100%;
-        transform: translateY(12px);
-        padding: 28px 24px 36px;
-        background: linear-gradient(to top, rgba(10,9,8,0.92) 0%, rgba(10,9,8,0.75) 70%, transparent 100%);
-        border-left: none;
-        border-top: 1px solid rgba(181,145,90,0.3);
-      }
-      .story-panel.active { transform: translateY(0); }
-
-      .story-panel-heading { font-size: clamp(28px, 7vw, 44px); margin-bottom: 12px; }
-      .story-panel-body { font-size: 14px; line-height: 1.7; }
-
-      /* Hide right-edge dots — they'd overlap the text */
-      .story-dots { display: none; }
+      .hero-actions { flex-direction: column; width: 100%; max-width: 300px; }
+      .hero-actions a { width: 100%; text-align: center; }
 
       /* ── OTHER SECTIONS ── */
       .manifesto-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -1363,8 +1295,6 @@
       .hero-h1 { font-size: 34px; }
       .hero-eyebrow { font-size: 10px; }
       .hero-stat-num { font-size: 22px; }
-      .story-panel-heading { font-size: 26px; }
-      .story-panel-body { font-size: 13px; }
     }
   </style>
 </head>
@@ -1376,14 +1306,14 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="mainNav">
-    <a href="#" class="nav-logo">Apex Construction<span>.</span></a>
+    <a href="#" class="nav-logo">Empire Design<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#works">Work</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Start a Project</a>
+    <a href="tel:604-782-7829" class="nav-cta">Click to Call</a>
     <div class="hamburger" id="hamburger" aria-label="Menu" role="button">
       <span></span><span></span><span></span>
     </div>
@@ -1393,7 +1323,7 @@
   <section id="hero">
 
     <!-- Background video -->
-    <video class="hero-video" autoplay muted loop playsinline>
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
       <source src="customHome1.mp4" type="video/mp4" />
     </video>
 
@@ -1402,39 +1332,27 @@
 
     <!-- Centred content -->
     <div class="hero-content">
-      <div class="hero-eyebrow">Custom Home Design</div>
+      <div class="hero-eyebrow">Custom Home Design in Vancouver</div>
       <h1 class="hero-h1">
-        Built for<br>
-        how you<br>
-        <em>truly live.</em>
+        Your Dream Home,<br>
+        <em>Expertly Built</em>
       </h1>
       <p class="hero-desc">
-        We design and build residences that begin with listening — to your routines, your light, your aspirations. Every detail is resolved before ground is broken.
+        Empire Design builds custom homes and renovations that match your vision. From design to construction, we handle every detail with precision and care.
       </p>
       <div class="hero-actions">
-        <a href="#works" class="btn-primary">View Our Work</a>
-        <a href="#process" class="btn-ghost">
-          How We Build
+        <a href="tel:604-782-7829" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align: middle; margin-right: 8px;">
+            <path d="M3 3h2l1 3.5L4.5 8a10 10 0 004.5 4.5l1.5-1.5L14 12v2a1 1 0 01-1 1A12 12 0 012 4a1 1 0 011-1z"/>
+          </svg>
+          Click to Call
+        </a>
+        <a href="#booking" class="btn-ghost">
+          Book a Meeting
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-      </div>
-    </div>
-
-    <!-- Stats — bottom centre -->
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num">214</div>
-        <div class="hero-stat-label">Homes Built</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">23</div>
-        <div class="hero-stat-label">Years Active</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">97%</div>
-        <div class="hero-stat-label">Client Retention</div>
       </div>
     </div>
 
@@ -1443,6 +1361,36 @@
       <div class="scroll-hint-line"></div>
     </div>
 
+  </section>
+
+  <!-- ─── BOOKING (ABOVE FOLD) ───────────────────────────────────────── -->
+  <section id="booking">
+    <div class="booking-inner">
+      <div class="booking-header">
+        <div class="section-label">Get Started Today</div>
+        <h2 class="booking-h2">Book Your<br><em>Free Consultation</em></h2>
+        <div class="booking-cta">
+          <div class="cta-item">
+            <div class="cta-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3h2l1 5.25L4.5 11a15 15 0 006.75 6.75l2.25-2.25L19 19v3a2 2 0 01-2 2A20 20 0 013 5a2 2 0 012-2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="cta-label">Call Now</div>
+              <a href="tel:604-782-7829" class="cta-value">604-782-7829</a>
+            </div>
+          </div>
+          <div class="cta-divider">or</div>
+        </div>
+        <p class="booking-desc">
+          Schedule a free consultation to discuss your custom home design or renovation project. We'll help you bring your vision to life.
+        </p>
+      </div>
+      <div class="booking-calendar">
+        <div id="my-cal-inline-30min"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ─── MARQUEE ───────────────────────────────────────── -->
@@ -1465,80 +1413,22 @@
     </div>
   </div>
 
-  <!-- ─── SCROLL STORY ────────────────────────────────────── -->
-  <section id="scrollstory">
-    <div class="story-scroll-container" id="storyContainer">
-      <div class="story-sticky">
-
-        <!-- Explode video — driven frame-by-frame by scroll -->
-        <video id="explodeVideo" class="story-video" muted playsinline preload="auto">
-          <source src="customExplode.mp4" type="video/mp4" />
-        </video>
-
-        <!-- Inward vignette -->
-        <div class="story-vignette" aria-hidden="true"></div>
-
-        <!-- Text panels -->
-        <div class="story-panels" aria-live="polite">
-
-          <div class="story-panel" id="storyPanel0">
-            <div class="story-panel-label">Design Thinking</div>
-            <h2 class="story-panel-heading">Every joint<br>is <em>intentional.</em></h2>
-            <p class="story-panel-body">
-              Before a single wall goes up, we resolve every structural connection, every material transition, every load path. What looks effortless is the result of exhaustive pre-construction coordination.
-            </p>
-          </div>
-
-          <div class="story-panel" id="storyPanel1">
-            <div class="story-panel-label">Material Intelligence</div>
-            <h2 class="story-panel-heading">Built from<br>the <em>inside out.</em></h2>
-            <p class="story-panel-body">
-              We select materials for their structural role as much as their finish. The envelope, the frame, the mechanical systems — each layer is chosen to perform for decades, not just to photograph well on day one.
-            </p>
-          </div>
-
-          <div class="story-panel" id="storyPanel2">
-            <div class="story-panel-label">Craft &amp; Precision</div>
-            <h2 class="story-panel-heading">Tolerances<br>that <em>last a lifetime.</em></h2>
-            <p class="story-panel-body">
-              Our crews work to millimetre tolerances on every assembly. The difference between a home that holds its value and one that doesn't is invisible — until it isn't.
-            </p>
-          </div>
-
-        </div>
-
-        <!-- Step dots -->
-        <div class="story-dots" aria-hidden="true">
-          <div class="story-dot active" id="dot0"></div>
-          <div class="story-dot" id="dot1"></div>
-          <div class="story-dot" id="dot2"></div>
-        </div>
-
-        <!-- Progress bar -->
-        <div class="story-progress-track">
-          <div class="story-progress-fill" id="storyProgressFill"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ─── MANIFESTO ─────────────────────────────────────── -->
   <section id="manifesto">
     <div class="manifesto-inner">
       <div class="manifesto-left reveal">
         <div class="section-label">Our Philosophy</div>
         <p>
-          Since 2003, we have shaped homes across Metro Vancouver and the Fraser Valley — each one a direct expression of the family that will inhabit it.
+          Empire Design specializes in custom home design and construction throughout Metro Vancouver and the surrounding areas. Every project is a unique expression of how our clients truly live.
         </p>
       </div>
       <div class="manifesto-right">
         <blockquote class="manifesto-quote reveal">
-          "Architecture is not about form. It is about the quality of the <em>light at 7am</em>, the sound of rain on a roof that fits perfectly, the warmth of a kitchen that holds everyone at once."
+          "We build homes that reflect who you are — with thoughtful design, quality craftsmanship, and <em>attention to every detail</em> that makes a house truly yours."
         </blockquote>
         <div class="manifesto-meta reveal reveal-delay-1">
           <div class="manifesto-meta-line"></div>
-          <span>Prehlad Singh, Principal &amp; Founder</span>
+          <span>Japnam Gill, Founder</span>
         </div>
         <div class="manifesto-pillars">
           <div class="pillar reveal reveal-delay-1">
@@ -1578,7 +1468,7 @@
     <div class="works-grid">
       <div class="work-card reveal">
         <span class="work-tag">Custom Build</span>
-        <img src="https://picsum.photos/seed/house_a1/800/1000" alt="Kensington Residence" loading="lazy" />
+        <img src="archsynth_image.png" alt="Kensington Residence" loading="lazy" width="800" height="1000" />
         <div class="work-overlay">
           <div class="work-info-title">Kensington Residence</div>
           <div class="work-info-sub">West Vancouver — 2024</div>
@@ -1591,7 +1481,7 @@
       </div>
       <div class="work-card reveal reveal-delay-1">
         <span class="work-tag">Renovation</span>
-        <img src="https://picsum.photos/seed/house_b2/600/480" alt="Lonsdale Retreat" loading="lazy" />
+        <img src="archsynth_image (2).png" alt="Lonsdale Retreat" loading="lazy" width="600" height="480" />
         <div class="work-overlay">
           <div class="work-info-title">Lonsdale Retreat</div>
           <div class="work-info-sub">North Vancouver — 2023</div>
@@ -1604,7 +1494,7 @@
       </div>
       <div class="work-card reveal reveal-delay-2">
         <span class="work-tag">Custom Build</span>
-        <img src="https://picsum.photos/seed/house_c3/600/480" alt="Southlands Estate" loading="lazy" />
+        <img src="archsynth_image (3).png" alt="Southlands Estate" loading="lazy" width="600" height="480" />
         <div class="work-overlay">
           <div class="work-info-title">Southlands Estate</div>
           <div class="work-info-sub">Vancouver — 2023</div>
@@ -1617,7 +1507,7 @@
       </div>
       <div class="work-card reveal reveal-delay-3">
         <span class="work-tag">Passive House</span>
-        <img src="https://picsum.photos/seed/house_d4/1200/500" alt="Tsawwassen Passive House" loading="lazy" />
+        <img src="archsynth_image (4).png" alt="Tsawwassen Passive House" loading="lazy" width="1200" height="500" />
         <div class="work-overlay">
           <div class="work-info-title">Tsawwassen Passive House</div>
           <div class="work-info-sub">Delta — 2022</div>
@@ -1757,6 +1647,12 @@
         <p class="contact-desc">
           We take on a limited number of projects annually. Tell us about your vision and we will respond within two business days.
         </p>
+        <a href="tel:604-782-7829" class="btn-call-large">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+            <path d="M3 3h2l1 3.5L4.5 8a10 10 0 004.5 4.5l1.5-1.5L14 12v2a1 1 0 01-1 1A12 12 0 012 4a1 1 0 011-1z"/>
+          </svg>
+          Call 604-782-7829
+        </a>
         <div class="contact-detail">
           <div class="contact-item">
             <div class="contact-item-icon">
@@ -1765,8 +1661,8 @@
               </svg>
             </div>
             <div>
-              <div class="contact-item-label">Studio</div>
-              <div class="contact-item-val">4281 Kingsway, Burnaby, BC V5H 1Z6</div>
+              <div class="contact-item-label">Company</div>
+              <div class="contact-item-val">Empire Design</div>
             </div>
           </div>
           <div class="contact-item">
@@ -1777,7 +1673,7 @@
             </div>
             <div>
               <div class="contact-item-label">Email</div>
-              <div class="contact-item-val">hello@prehladdesignbuild.ca</div>
+              <div class="contact-item-val">japnam@empiredesigncorp.com</div>
             </div>
           </div>
           <div class="contact-item">
@@ -1788,13 +1684,13 @@
             </div>
             <div>
               <div class="contact-item-label">Phone</div>
-              <div class="contact-item-val">+1 (604) 837-2914</div>
+              <a href="tel:604-782-7829" class="contact-item-val contact-phone-link">604-782-7829</a>
             </div>
           </div>
         </div>
       </div>
 
-      <form class="contact-form reveal reveal-delay-2" id="contactForm" novalidate>
+      <form class="contact-form reveal reveal-delay-2" id="contactForm" action="https://formspree.io/f/xrejzygj" method="POST">
         <div class="form-row">
           <div class="field">
             <label for="firstName">First Name</label>
@@ -1946,39 +1842,6 @@
       });
     });
 
-    // ─── FORM VALIDATION ─────────────────────────────────
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let valid = true;
-
-      form.querySelectorAll('input[required]').forEach(input => {
-        const empty = !input.value.trim();
-        const emailFail = input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-        if (empty || emailFail) {
-          input.classList.add('error');
-          valid = false;
-        } else {
-          input.classList.remove('error');
-        }
-      });
-
-      if (valid) {
-        submitBtn.textContent = 'Sending…';
-        submitBtn.disabled = true;
-        setTimeout(() => {
-          submitBtn.textContent = 'Inquiry Sent';
-          submitBtn.style.background = '#6B8F71';
-        }, 1400);
-      }
-    });
-
-    form.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', () => input.classList.remove('error'));
-    });
-
     // ─── ACTIVE NAV LINK ─────────────────────────────────
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -2027,96 +1890,15 @@
       })();
     })();
 
-    // ─── SCROLL STORY — seeked-gated, lerp-smoothed ──────
-    (function () {
-      const container = document.getElementById('storyContainer');
-      const video     = document.getElementById('explodeVideo');
-      const fill      = document.getElementById('storyProgressFill');
-      const panels    = [0, 1, 2].map(i => document.getElementById('storyPanel' + i));
-      const dots      = [0, 1, 2].map(i => document.getElementById('dot' + i));
-
-      const thresholds = [
-        [0.00, 0.38],
-        [0.32, 0.68],
-        [0.62, 1.00],
-      ];
-
-      let duration      = 0;
-      let scrollTarget  = 0;  // raw progress from scroll position
-      let displayed     = 0;  // lerped — drives UI and seeks
-      let lastDisplayed = -1;
-
-      // Seek-gate: only one seek in flight at a time.
-      // If a seek is pending, we store the latest desired time and dispatch
-      // it immediately when the decoder signals it is ready via 'seeked'.
-      let seekBusy       = false;
-      let pendingSeekTime = -1;
-
-      function dispatchSeek(t) {
-        seekBusy = true;
-        video.currentTime = t;
-      }
-
-      function seekVideo(p) {
-        if (duration <= 0) return;
-        const t = p * duration;
-        if (seekBusy) {
-          // Always keep the freshest target queued
-          pendingSeekTime = t;
-          return;
-        }
-        // Skip if already within one decoded frame (~16 ms)
-        if (Math.abs(video.currentTime - t) < 0.016) return;
-        dispatchSeek(t);
-      }
-
-      // When the decoder finishes, dispatch the queued seek if one exists
-      video.addEventListener('seeked', () => {
-        seekBusy = false;
-        if (pendingSeekTime >= 0) {
-          const t = pendingSeekTime;
-          pendingSeekTime = -1;
-          if (Math.abs(video.currentTime - t) > 0.016) dispatchSeek(t);
-        }
-      });
-
-      function captureMeta() { duration = video.duration; video.pause(); }
-      video.addEventListener('loadedmetadata', captureMeta);
-      if (video.readyState >= 1) captureMeta();
-
-      function getScrollProgress() {
-        const rect  = container.getBoundingClientRect();
-        const total = container.offsetHeight - window.innerHeight;
-        return Math.min(1, Math.max(0, -rect.top / total));
-      }
-
-      window.addEventListener('scroll', () => {
-        scrollTarget = getScrollProgress();
-      }, { passive: true });
-
-      function setActivePanel(p) {
-        panels.forEach((panel, i) => {
-          const [enter, exit] = thresholds[i];
-          const active = (i < panels.length - 1)
-            ? (p >= enter && p < exit)
-            : (p >= enter);
-          panel.classList.toggle('active', active);
-          dots[i].classList.toggle('active', active);
-        });
-      }
-
-      // Always-running RAF loop: lerp UI values, gate actual seeks
-      const LERP = 0.1;
-      (function loop() {
-        requestAnimationFrame(loop);
-        displayed += (scrollTarget - displayed) * LERP;
-        if (Math.abs(displayed - lastDisplayed) < 0.0002) return;
-        lastDisplayed = displayed;
-        seekVideo(displayed);
-        fill.style.width = (displayed * 100).toFixed(2) + '%';
-        setActivePanel(displayed);
-      })();
-    })();
+    // ─── CAL.COM CALENDAR ──────────────────────────────────
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "30min", {origin:"https://app.cal.com"});
+    Cal.ns["30min"]("inline", {
+      elementOrSelector:"#my-cal-inline-30min",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+      calLink: "empire-deisgn/30min",
+    });
+    Cal.ns["30min"]("ui", {"hideEventTypeDetails":true,"layout":"month_view"});
 
   </script>
 </body>
