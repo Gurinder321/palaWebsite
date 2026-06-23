@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Home Design — Empire Design in Vancouver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F6F4F0; --bg-warm: #EEEAE4; --ink: #1C1B18; --ink-mid: #4A4840;
+      --ink-muted: #8C8A84; --gold: #B5915A; --gold-pale: #D8C4A8;
+      --white: #FFFFFF; --teal: #1B6B6B; --border: rgba(28,27,24,0.10);
+      --border-light: rgba(28,27,24,0.06); --shadow-soft: 0 24px 60px -12px rgba(28,27,24,0.08);
+      --shadow-card: 0 8px 32px -8px rgba(28,27,24,0.10);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-h: 72px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--font-body);
+      font-weight: 400; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 100;
+      display: flex; align-items: center; padding: 0 clamp(24px, 5vw, 80px); justify-content: space-between;
+      background: rgba(246,244,240,0.94); backdrop-filter: blur(20px) saturate(1.4); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-mid); text-decoration: none; }
+    .nav-cta { font-size: 12px; font-weight: 600; color: var(--white); background: var(--ink); padding: 10px 24px; border: 1px solid var(--ink); border-radius: 2px; text-decoration: none; }
+    #hero { min-height: 100dvh; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; padding: var(--nav-h) clamp(24px, 6vw, 120px) 60px; max-width: 900px; background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(10,9,8,0.5) 0%, transparent 100%); }
+    .hero-h1 { font-family: var(--font-display); font-size: clamp(52px, 7vw, 108px); font-weight: 400; line-height: 1; color: var(--white); text-shadow: 0 2px 6px rgba(0,0,0,0.85), 0 4px 32px rgba(0,0,0,0.6); margin-bottom: 32px; }
+    .hero-h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 16px rgba(0,0,0,0.65); max-width: 52ch; margin-bottom: 48px; }
+    .hero-actions { display: flex; gap: 32px; flex-wrap: wrap; align-items: center; justify-content: center; }
+    .btn-primary { font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--white); background: var(--teal); border: 1px solid var(--teal); padding: 16px 36px; border-radius: 2px; text-decoration: none; cursor: pointer; transition: background 0.25s; }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+    .btn-secondary { font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--white); background: transparent; border: 1px solid rgba(255,255,255,0.4); padding: 16px 36px; border-radius: 2px; text-decoration: none; }
+    section { padding: clamp(80px, 10vw, 160px) clamp(24px, 5vw, 80px); }
+    .section-container { max-width: 1400px; margin: 0 auto; }
+    h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 56px); font-weight: 400; line-height: 1.1; margin-bottom: 40px; }
+    .cards-grid-3x2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .card { padding: 40px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); }
+    .card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin-bottom: 16px; color: var(--ink); }
+    .card p { font-size: 14px; line-height: 1.7; color: var(--ink-muted); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 32px 0; }
+    .faq-question { font-family: var(--font-display); font-size: 18px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--ink); }
+    .faq-answer { display: none; margin-top: 20px; font-size: 15px; line-height: 1.8; color: var(--ink-mid); }
+    .faq-item.open .faq-answer { display: block; }
+    .final-cta { background: var(--teal); color: var(--white); padding: clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px); text-align: center; }
+    .final-cta h2 { color: var(--white); }
+    .btn-white { background: var(--white); color: var(--teal); border: 1px solid var(--white); padding: 16px 36px; text-decoration: none; border-radius: 2px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+    form { max-width: 700px; margin: 0 auto; }
+    .form-group { margin-bottom: 24px; }
+    label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--ink); }
+    input, select, textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-body); font-size: 14px; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+    .form-submit { width: 100%; padding: 16px; background: var(--teal); color: var(--white); border: none; border-radius: 4px; font-weight: 600; cursor: pointer; text-transform: uppercase; }
+    .form-submit:hover { background: var(--gold); }
+    @media (max-width: 768px) { .cards-grid-3x2, .gallery-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Empire<span>Design</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#works">Work</a></li>
+    <li><a href="/customHomes">Custom Homes</a></li>
+  </ul>
+  <a href="#form" class="nav-cta">Consult</a>
+</nav>
+
+<section id="hero">
+  <img src="https://via.placeholder.com/2000x1125?text=Custom+Homes+Hero" alt="Custom home design" class="hero-bg">
+  <div class="hero-content">
+    <h1 class="hero-h1">Better Homes Begin With <em>Better Planning</em></h1>
+    <p class="hero-desc">Whether you're building a forever home, planning for multiple generations, or creating a home tailored to your lifestyle, thoughtful planning helps create a home that supports your family for decades.</p>
+    <div class="hero-actions">
+      <a href="#form" class="btn-primary">Book Consultation</a>
+      <a href="tel:+1234567890" class="btn-secondary">Call Now</a>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center;">
+      <div><div style="font-family: var(--font-display); font-size: 44px; font-weight: 500; color: var(--gold);">5+</div><div style="font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--ink-mid);">Years In Business</div></div>
+      <div><div style="font-family: var(--font-display); font-size: 44px; font-weight: 500; color: var(--gold);">150+</div><div style="font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--ink-mid);">Projects</div></div>
+      <div><div style="font-family: var(--font-display); font-size: 44px; font-weight: 500; color: var(--gold);">13+</div><div style="font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--ink-mid);">Municipalities</div></div>
+      <div><div style="font-family: var(--font-display); font-size: 44px; font-weight: 500; color: var(--gold);">50+</div><div style="font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--ink-mid);">Reviews</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>Every Family Lives <em>Differently</em></h2>
+    <p>Your home should reflect the way your family actually lives. Thoughtful custom home design accounts for aging parents, children's spaces, entertaining, working from home, and the flexibility to adapt as your family evolves.</p>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <h2>Who This Is For</h2>
+    <div class="cards-grid-3x2">
+      <div class="card"><h3>Forever Home Planning</h3><p>Building the home where you'll grow old, with spaces that adapt as your needs change.</p></div>
+      <div class="card"><h3>Multi-Generational Living</h3><p>Designing homes where parents, children, and grandchildren live together comfortably.</p></div>
+      <div class="card"><h3>Acreage Properties</h3><p>Maximizing the potential of rural or estate properties with thoughtful site planning.</p></div>
+      <div class="card"><h3>Growing Families</h3><p>Creating homes that accommodate expanding families over time.</p></div>
+      <div class="card"><h3>Lifestyle-Focused Living</h3><p>Designing around your hobbies and values—not compromising your vision.</p></div>
+      <div class="card"><h3>Property-First Planning</h3><p>Leveraging unique property opportunities that standard designs can't address.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>What We Help With</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+      <div class="card"><h3>Custom Home Design</h3><p>Family-focused design for long-term living.</p></div>
+      <div class="card"><h3>Development Planning</h3><p>Understanding opportunities before committing.</p></div>
+      <div class="card"><h3>Property Analysis</h3><p>Discovering what your property can support.</p></div>
+      <div class="card"><h3>Site Planning</h3><p>Responding thoughtfully to your property.</p></div>
+      <div class="card"><h3>Municipal Coordination</h3><p>Working through regulations and maximizing opportunity.</p></div>
+      <div class="card"><h3>Permit Coordination</h3><p>Reducing complexity in the permitting process.</p></div>
+      <div class="card"><h3>Consultant Coordination</h3><p>Managing your team of specialists.</p></div>
+      <div class="card"><h3>Construction Docs</h3><p>Comprehensive documents for accurate construction.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <h2>Common Decision Points</h2>
+    <div class="cards-grid-3x2">
+      <div class="card"><h3>Should I Renovate Or Rebuild?</h3><p>We help you weigh both approaches to determine which makes sense for your situation.</p></div>
+      <div class="card"><h3>How Large Should My Home Be?</h3><p>The right size depends on your family, lifestyle, and long-term goals.</p></div>
+      <div class="card"><h3>Can I Design For Multiple Generations?</h3><p>Multi-generational homes are entirely feasible. We have substantial expertise here.</p></div>
+      <div class="card"><h3>Can I Add A Garden Suite?</h3><p>Garden suites add flexibility and rental income. Municipal rules vary—we navigate them.</p></div>
+      <div class="card"><h3>How Long Does The Process Take?</h3><p>Typically 12–18 months from consultation to permit approval. Construction adds 12–24 months.</p></div>
+      <div class="card"><h3>What Should I Do First?</h3><p>A consultation. We'll assess your property, goals, and constraints.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>Why Start Early</h2>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 60px;">Planning early prevents costly redesigns, helps coordinate consultants, improves budgeting, and reduces surprises.</p>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; text-align: center;">
+      <div><h3>Identify Opportunities</h3></div>
+      <div><h3>Reduce Redesigns</h3></div>
+      <div><h3>Coordinate Consultants</h3></div>
+      <div><h3>Improve Budget</h3></div>
+      <div><h3>Reduce Surprises</h3></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <h2>The Process</h2>
+    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px; margin-bottom: 60px;">
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">1. Consultation</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">2. Property Review</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">3. Concept Design</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">4. Design Dev</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">5. Municipal</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">6. Construction Docs</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">7. Permitting</div></div>
+      <div style="text-align: center;"><div style="font-weight: 600; margin-bottom: 12px;">8. Construction</div></div>
+    </div>
+    <div style="text-align: center;"><a href="#form" class="btn-primary">Book Consultation</a></div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>Consultation Expectations</h2>
+    <div style="background: var(--bg-warm); padding: 20px; border-radius: 4px; margin-bottom: 32px; text-align: center;">The consultation exists to create clarity, not pressure.</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px;">
+      <div>
+        <h3>What We Discuss</h3>
+        <ul style="list-style: none;">
+          <li style="margin-bottom: 16px;">✓ Project goals</li>
+          <li style="margin-bottom: 16px;">✓ Property review</li>
+          <li style="margin-bottom: 16px;">✓ Opportunities & constraints</li>
+          <li style="margin-bottom: 16px;">✓ What's possible</li>
+          <li style="margin-bottom: 16px;">✓ Realistic costs</li>
+          <li style="margin-bottom: 16px;">✓ Next steps</li>
+        </ul>
+      </div>
+      <div><p>During a consultation, we'll explore your vision for your home and understand how your family actually lives. We'll analyze your property together, identify opportunities and constraints, discuss realistic costs, and outline the path forward without any pressure.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <h2>Featured Case Study</h2>
+    <h3>555 Rosser Avenue</h3>
+    <p><strong>The Challenge:</strong> A sloped lot in Burnaby with complex municipal requirements. The family needed a home that respected the neighborhood while maximizing potential.</p>
+    <p><strong>Our Approach:</strong> We developed a tiered design that creates multiple outdoor spaces at different levels, responding to the neighborhood context while delivering a contemporary interior.</p>
+    <p><strong>The Outcome:</strong> A four-level home with multiple outdoor terraces, flexible guest suite, and seamless indoor-outdoor living. Approved without major revisions and completed on budget.</p>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>Project Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+1" alt="Gallery 1"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+2" alt="Gallery 2"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+3" alt="Gallery 3"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+4" alt="Gallery 4"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+5" alt="Gallery 5"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+6" alt="Gallery 6"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+7" alt="Gallery 7"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+8" alt="Gallery 8"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+9" alt="Gallery 9"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+10" alt="Gallery 10"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+11" alt="Gallery 11"></div>
+      <div class="gallery-item"><img src="https://via.placeholder.com/300x300?text=Gallery+12" alt="Gallery 12"></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg);" id="faq">
+  <div class="section-container">
+    <h2>Frequently Asked Questions</h2>
+    <div style="max-width: 760px; margin: 0 auto;">
+      <div class="faq-item">
+        <div class="faq-question"><span>How much does custom home design cost?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">Design fees typically range from $5,000–$11,000+, depending on complexity. Discussion during consultation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>How much does a custom home cost to build?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">Construction typically ranges $750,000–$2,000,000+ depending on size, finishes, and location.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>How long does the process take?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">Consultation to permits: 12–18 months. Construction: 12–24 months depending on size.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Can you design for multiple generations?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">Yes. Multi-generational design is a specialty. We create homes where multiple generations live comfortably.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Can I include a garden suite?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">Yes. Garden suites are increasingly permitted in Greater Vancouver. Municipal rules vary.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Do I need permits?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">Yes. Custom homes require building permits. We coordinate this and ensure compliance.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Should I renovate or rebuild?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">We analyze both during consultation and recommend the best path for your situation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>What happens after the consultation?</span><span style="font-weight: bold;">+</span></div>
+        <div class="faq-answer">We send a summary of recommendations and next steps. If you want to proceed, we discuss project details.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>Cost Expectations</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+      <div style="padding: 60px 40px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center;">
+        <h3>Design Fees</h3>
+        <div style="font-family: var(--font-display); font-size: 32px; font-weight: 500; color: var(--gold); margin-bottom: 32px;">$5K–$11K+</div>
+        <p>Varies by project complexity. Detailed proposal provided after consultation.</p>
+      </div>
+      <div style="padding: 60px 40px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center;">
+        <h3>Construction Costs</h3>
+        <div style="font-family: var(--font-display); font-size: 32px; font-weight: 500; color: var(--gold); margin-bottom: 32px;">$750K–$2M+</div>
+        <p>Depends on home size, finishes, and location. Detailed budgeting during design phase.</p>
+      </div>
+    </div>
+    <div style="text-align: center; padding: 24px; background: var(--bg); border-radius: 4px; font-size: 13px; color: var(--ink-mid);">Every project is unique. Consultation required for meaningful budgeting.</div>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <h2>Why Empire</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+      <div class="card"><h3>Property Advisor First</h3><p>We think like property advisors, not architects.</p></div>
+      <div class="card"><h3>Development Mindset</h3><p>We approach every project as a development opportunity.</p></div>
+      <div class="card"><h3>Multi-Generational Expertise</h3><p>Designing homes for multiple generations is a specialty.</p></div>
+      <div class="card"><h3>Municipal Experience</h3><p>Deep experience navigating Greater Vancouver regulations.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+  <div class="section-container">
+    <h2>Related Services</h2>
+    <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px;">
+      <a href="#" style="padding: 32px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center; text-decoration: none; color: var(--ink);"><h3>Development Planning</h3></a>
+      <a href="#" style="padding: 32px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center; text-decoration: none; color: var(--ink);"><h3>Duplex Design</h3></a>
+      <a href="#" style="padding: 32px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center; text-decoration: none; color: var(--ink);"><h3>Multiplex Design</h3></a>
+      <a href="#" style="padding: 32px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center; text-decoration: none; color: var(--ink);"><h3>Major Renovations</h3></a>
+      <a href="#" style="padding: 32px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center; text-decoration: none; color: var(--ink);"><h3>Property Assessment</h3></a>
+      <a href="#" style="padding: 32px 24px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; text-align: center; text-decoration: none; color: var(--ink);"><h3>Interior Design</h3></a>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg);">
+  <div class="section-container">
+    <h2>Quick Answers</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
+      <div class="card"><h3>What is custom home design?</h3><p>Creating a home uniquely tailored to your family's lifestyle, property, and goals.</p></div>
+      <div class="card"><h3>How much does it cost?</h3><p>Design fees: $5K–$11K+. Construction: $750K–$2M+. Consultation required for specifics.</p></div>
+      <div class="card"><h3>How long does it take?</h3><p>12–18 months from consultation to permit approval. Construction adds 12–24 months.</p></div>
+      <div class="card"><h3>Can I build multi-generational?</h3><p>Yes. Multi-generational design is a specialty.</p></div>
+      <div class="card"><h3>What happens in a consultation?</h3><p>We discuss your goals, review your property, identify opportunities, and outline next steps.</p></div>
+      <div class="card"><h3>Do you serve my area?</h3><p>We serve all of Greater Vancouver. Contact us to confirm your location.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="section-container">
+    <h2>Let's Talk About Your Future Home</h2>
+    <p>The first step is a conversation about your vision, property, and goals. No obligation—just clarity and guidance.</p>
+    <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+      <a href="#form" class="btn-white">Book Consultation</a>
+      <a href="tel:+1234567890" style="background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.5); padding: 16px 36px; text-decoration: none; border-radius: 2px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Call Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="form" style="background: var(--white);">
+  <div class="section-container">
+    <h2 style="text-align: center;">Start Your Project</h2>
+    <form onsubmit="event.preventDefault(); alert('Thank you! A member of our team will contact you soon.');">
+      <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required></div>
+      <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="phone" required></div>
+      <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required></div>
+      <div class="form-group"><label for="address">Property Address *</label><input type="text" id="address" name="address" required></div>
+      <div class="form-group"><label for="municipality">Municipality *</label><select id="municipality" name="municipality" required><option value="">Select a municipality</option><option value="Surrey">Surrey</option><option value="Burnaby">Burnaby</option><option value="Vancouver">Vancouver</option><option value="Langley">Langley</option><option value="Other">Other</option></select></div>
+      <div class="form-group"><label for="goals">Project Goals *</label><input type="text" id="goals" name="goals" placeholder="e.g., Build a forever home" required></div>
+      <div class="form-group"><label for="budget">Budget Range *</label><select id="budget" name="budget" required><option value="">Select a range</option><option value="$500k-$750k">$500,000–$750,000</option><option value="$750k-$1m">$750,000–$1,000,000</option><option value="$1m+">$1,000,000+</option></select></div>
+      <div class="form-group"><label for="timeline">Timeline *</label><select id="timeline" name="timeline" required><option value="">Select a timeline</option><option value="Immediate">Immediate</option><option value="6-12 months">6–12 months</option><option value="1-2 years">1–2 years</option><option value="Open">Flexible</option></select></div>
+      <button type="submit" class="form-submit">Request Consultation</button>
+    </form>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', function() {
+    const item = this.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
