@@ -45,9 +45,6 @@
     .card { padding: 40px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); }
     .card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin-bottom: 16px; color: var(--ink); }
     .card p { font-size: 14px; line-height: 1.7; color: var(--ink-muted); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .gallery-item { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
     .faq-item { border-bottom: 1px solid var(--border); padding: 32px 0; }
     .faq-question { font-family: var(--font-display); font-size: 18px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--ink); }
     .faq-answer { display: none; margin-top: 20px; font-size: 15px; line-height: 1.8; color: var(--ink-mid); }
@@ -55,6 +52,35 @@
     .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
     .trust-num { font-family: var(--font-display); font-size: 44px; font-weight: 500; color: var(--gold); }
     .trust-label { font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--ink-mid); }
+    
+    /* PROCESS STYLING */
+    .process-section { background: var(--white); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .process-step { padding: 40px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); text-align: center; transition: all 0.3s; }
+    .process-step:hover { background: var(--gold-pale); box-shadow: 0 12px 40px rgba(181,145,90,0.15); transform: translateY(-4px); }
+    .step-num { font-family: var(--font-display); font-size: 48px; font-weight: 400; color: var(--gold); margin-bottom: 16px; opacity: 0.8; }
+    .step-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 12px; }
+    .step-desc { font-size: 13px; line-height: 1.6; color: var(--ink-muted); }
+    
+    /* GALLERY STYLING */
+    .gallery-section { background: var(--bg); }
+    .gallery-group { margin-bottom: 60px; }
+    .gallery-group-title { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--gold); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 1; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; box-shadow: 0 12px 40px rgba(28,27,24,0.15); }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:hover { box-shadow: 0 20px 60px rgba(181,145,90,0.3); border-radius: 8px; }
+    
+    /* MODAL */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
+    .modal.active { display: flex; align-items: center; justify-content: center; }
+    .modal-content { position: relative; max-width: 90vw; max-height: 90vh; }
+    .modal-content img { width: 100%; height: auto; border-radius: 8px; }
+    .modal-close { position: absolute; top: 20px; right: 20px; font-size: 32px; color: var(--white); cursor: pointer; background: rgba(0,0,0,0.5); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
+    .modal-close:hover { background: rgba(0,0,0,0.8); }
+    
+    /* BOOKING */
     #booking { background: var(--bg-warm); }
     .booking-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(60px, 8vw, 120px); align-items: start; }
     .booking-header { padding-top: 8px; }
@@ -69,11 +95,14 @@
     .cta-value:hover { color: var(--gold); }
     .cta-divider { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; font-weight: 500; letter-spacing: 0.08em; }
     .booking-calendar { background: var(--white); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); min-height: 650px; }
+    
     @media (max-width: 768px) {
-      .cards-grid-3x2, .gallery-grid, .trust-row { grid-template-columns: 1fr; }
+      .cards-grid-3x2, .trust-row { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; }
       .nav-links { display: none; }
       .booking-inner { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -186,18 +215,50 @@
   </div>
 </section>
 
-<section style="background: var(--bg);">
+<section class="process-section">
   <div class="section-container">
     <h2>The Process</h2>
-    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px; margin-bottom: 60px; text-align: center;">
-      <div><div style="font-weight: 600;">1. Consultation</div></div>
-      <div><div style="font-weight: 600;">2. Property Review</div></div>
-      <div><div style="font-weight: 600;">3. Concept Design</div></div>
-      <div><div style="font-weight: 600;">4. Design Dev</div></div>
-      <div><div style="font-weight: 600;">5. Municipal</div></div>
-      <div><div style="font-weight: 600;">6. Const. Docs</div></div>
-      <div><div style="font-weight: 600;">7. Permitting</div></div>
-      <div><div style="font-weight: 600;">8. Construction</div></div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Consultation</h3>
+        <p class="step-desc">Understand your vision, property, and goals</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Property Review</h3>
+        <p class="step-desc">Analyze site conditions and opportunities</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Concept Design</h3>
+        <p class="step-desc">Explore initial design directions</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Design Development</h3>
+        <p class="step-desc">Refine and detail your vision</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <h3 class="step-title">Municipal Coordination</h3>
+        <p class="step-desc">Work through regulations</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">06</div>
+        <h3 class="step-title">Construction Docs</h3>
+        <p class="step-desc">Prepare detailed documentation</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">07</div>
+        <h3 class="step-title">Permitting</h3>
+        <p class="step-desc">Obtain approvals and permits</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">08</div>
+        <h3 class="step-title">Construction</h3>
+        <p class="step-desc">Your home is built</p>
+      </div>
     </div>
   </div>
 </section>
@@ -260,22 +321,44 @@
   </div>
 </section>
 
-<section style="background: var(--white);">
+<section class="gallery-section">
   <div class="section-container">
     <h2>Project Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="./2131_Jordan_Dr_3D1.JPG" alt="Project 1" loading="lazy"></div>
-      <div class="gallery-item"><img src="./890_Whitchurch_3D.JPG" alt="Project 2" loading="lazy"></div>
-      <div class="gallery-item"><img src="./890_Whitchurch_3DSite.JPG" alt="Project 3" loading="lazy"></div>
-      <div class="gallery-item"><img src="./555 Rosser - 3D 1.JPG" alt="Project 4" loading="lazy"></div>
-      <div class="gallery-item"><img src="./555 Rosser - 3D 2.JPG" alt="Project 5" loading="lazy"></div>
-      <div class="gallery-item"><img src="./5445 - 3D 1.JPG" alt="Project 6" loading="lazy"></div>
-      <div class="gallery-item"><img src="./5445 - 3D 2.JPG" alt="Project 7" loading="lazy"></div>
-      <div class="gallery-item"><img src="./890_Whitchurch_Mainfloor.JPG" alt="Project 8" loading="lazy"></div>
-      <div class="gallery-item"><img src="./2131_Jordan_Dr_Mainfloor.JPG" alt="Project 9" loading="lazy"></div>
-      <div class="gallery-item"><img src="./5445 - Main Floor.JPG" alt="Project 10" loading="lazy"></div>
-      <div class="gallery-item"><img src="./555 Rosser - Main Floor.JPG" alt="Project 11" loading="lazy"></div>
-      <div class="gallery-item"><img src="./2131_Jordan_Dr_Hero.JPG" alt="Project 12" loading="lazy"></div>
+    
+    <div class="gallery-group">
+      <h3 class="gallery-group-title">2131 Jordan Drive</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal('./2131_Jordan_Dr_3D1.JPG')"><img src="./2131_Jordan_Dr_3D1.JPG" alt="2131 Jordan Dr 3D View"></div>
+        <div class="gallery-item" onclick="openModal('./2131_Jordan_Dr_Hero.JPG')"><img src="./2131_Jordan_Dr_Hero.JPG" alt="2131 Jordan Dr Front"></div>
+        <div class="gallery-item" onclick="openModal('./2131_Jordan_Dr_Mainfloor.JPG')"><img src="./2131_Jordan_Dr_Mainfloor.JPG" alt="2131 Jordan Dr Main Floor"></div>
+      </div>
+    </div>
+
+    <div class="gallery-group">
+      <h3 class="gallery-group-title">890 Whitchurch Road</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal('./890_Whitchurch_3D.JPG')"><img src="./890_Whitchurch_3D.JPG" alt="890 Whitchurch 3D"></div>
+        <div class="gallery-item" onclick="openModal('./890_Whitchurch_3DSite.JPG')"><img src="./890_Whitchurch_3DSite.JPG" alt="890 Whitchurch Site"></div>
+        <div class="gallery-item" onclick="openModal('./890_Whitchurch_Mainfloor.JPG')"><img src="./890_Whitchurch_Mainfloor.JPG" alt="890 Whitchurch Main Floor"></div>
+      </div>
+    </div>
+
+    <div class="gallery-group">
+      <h3 class="gallery-group-title">555 Rosser Avenue</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal('./555 Rosser - 3D 1.JPG')"><img src="./555 Rosser - 3D 1.JPG" alt="555 Rosser 3D View 1"></div>
+        <div class="gallery-item" onclick="openModal('./555 Rosser - 3D 2.JPG')"><img src="./555 Rosser - 3D 2.JPG" alt="555 Rosser 3D View 2"></div>
+        <div class="gallery-item" onclick="openModal('./555 Rosser - Main Floor.JPG')"><img src="./555 Rosser - Main Floor.JPG" alt="555 Rosser Main Floor"></div>
+      </div>
+    </div>
+
+    <div class="gallery-group">
+      <h3 class="gallery-group-title">5445 Street Address</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal('./5445 - 3D 1.JPG')"><img src="./5445 - 3D 1.JPG" alt="5445 3D View 1"></div>
+        <div class="gallery-item" onclick="openModal('./5445 - 3D 2.JPG')"><img src="./5445 - 3D 2.JPG" alt="5445 3D View 2"></div>
+        <div class="gallery-item" onclick="openModal('./5445 - Main Floor.JPG')"><img src="./5445 - Main Floor.JPG" alt="5445 Main Floor"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -321,7 +404,38 @@
   </div>
 </section>
 
+<div id="imageModal" class="modal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="">
+  </div>
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js"></script>
 <script>
+window.addEventListener('load', function() {
+  Calendly.initInlineWidget({
+    url: 'https://calendly.com/japnamgill',
+    parentElement: document.getElementById('my-cal-inline-30min'),
+    prefill: {},
+    utm: {}
+  });
+});
+
+function openModal(src) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  modalImg.src = src;
+  modal.classList.add('active');
+}
+
+function closeModal(event) {
+  const modal = document.getElementById('imageModal');
+  if (event === undefined || event.target === modal) {
+    modal.classList.remove('active');
+  }
+}
+
 document.querySelectorAll('.faq-question').forEach(q => {
   q.addEventListener('click', function() {
     const item = this.closest('.faq-item');
