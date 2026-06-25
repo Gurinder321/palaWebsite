@@ -1,12 +1,1 @@
-{
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "cleanUrls": true,
-  "public": ".",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
-    }
-  ]
-}
+{}
